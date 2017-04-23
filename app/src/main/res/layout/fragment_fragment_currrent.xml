@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.forever.weather.CurrentWeatherFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/showTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Temperature"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textSize="50sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/showSunrise"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sunrise"
+            android:gravity="center"
+            android:textSize="25sp"/>
+        <TextView
+            android:id="@+id/showSunset"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Sunset"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="25sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/showCondition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Weather Description"
+        android:gravity="center"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:id="@+id/showCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Country"
+        android:gravity="center"
+        android:textSize="25sp"/>
+
+
+</LinearLayout>
