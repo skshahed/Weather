@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context="com.example.forever.weather.CurrentWeatherFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -10,48 +11,123 @@
         android:id="@+id/showTemperature"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Temperature"
+        android:text="27℃"
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:textSize="50sp"/>
+    <TextView
+        android:id="@+id/showDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="24-04-2017"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:textSize="30sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:layout_marginLeft="25dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="City Area :"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/showCity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Dhaka"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:layout_marginLeft="25dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sunrise :"
+            android:textSize="20sp"/>
         <TextView
             android:id="@+id/showSunrise"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="5:29 AM"
             android:layout_weight="1"
-            android:text="Sunrise"
-            android:gravity="center"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:layout_marginLeft="25dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sunset :"
+            android:textSize="20sp"/>
         <TextView
             android:id="@+id/showSunset"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Sunset"
+            android:text="6:36 PM"
             android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="25sp"/>
+            android:textSize="20sp"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/showCondition"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Weather Description"
-        android:gravity="center"
-        android:textSize="25sp"/>
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:layout_marginLeft="25dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Humidity :"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/showHumidity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="80%"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/showCountry"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Country"
-        android:gravity="center"
-        android:textSize="25sp"/>
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:layout_marginLeft="25dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Weather :"
+            android:textSize="20sp"/>
+        <TextView
+            android:id="@+id/showCondition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Rainy"
+            android:layout_weight="1"
+            android:textSize="20sp"/>
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -1,6 +1,9 @@
 package com.example.forever.weather;
 
 import android.Manifest;
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,8 +12,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -48,13 +57,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 .addOnConnectionFailedListener(this)
                 .build();
 
+
         geocoder = new Geocoder(this);
 
         locationset = new Location(this);
 
 
 
-        //--------------------------For TAB VIEW
+        //TAB View Works ********************************
 
         viewPager = (ViewPager) findViewById(R.id.container);
         mPagerAdapter =new ViewPageAdapter(getSupportFragmentManager());
@@ -64,6 +74,55 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
 
     }
+
+
+    //Menu Item selection works Starts ****************************
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.converter_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.search_city:
+                // Associate searchable configuration with the SearchView
+                SearchManager searchManager =
+                        (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+                SearchView searchView =
+                        (SearchView) item.getActionView();
+               searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+                searchView.setIconifiedByDefault(false);
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+
+                      //  adapter.getFilter().filter(newText);
+
+                        return false;
+                    }
+                });
+                break;
+            case R.id.celsius:
+                break;
+            case R.id.fahrenheit:
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //Menu Item selection works Ends ****************************
+
+
     @Override
     protected void onStart() {
         googleApiClient.connect();
@@ -114,6 +173,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         currentLat =  String.valueOf(location.getLatitude());
         currentLng =  String.valueOf(location.getLongitude());
+
+        /*FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        CurrentWeatherFragment fragmentCurrent = new CurrentWeatherFragment();
+        fragmentCurrent.setArguments(bundle);
+        ft.replace(R.id.container, fragmentCurrent);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.addToBackStack(null);
+        ft.commit();*/
 
 
         try {

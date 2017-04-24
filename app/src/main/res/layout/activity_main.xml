@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg4"
+    android:background="@drawable/bg9"
     tools:context="com.example.forever.weather.MainActivity">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
-        android:background="#5C6BC0"
+        android:background="#5cc0a7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

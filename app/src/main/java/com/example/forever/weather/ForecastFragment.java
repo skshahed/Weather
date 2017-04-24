@@ -32,7 +32,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ForecastFragment extends Fragment {
 
     private String TAG = "WeatherApp";
-    private WeatherApi weatherApi;
+    private WeatherForecastApi weatherForecastApi;
     private WeatherIconSelector iconSelector = new WeatherIconSelector();
 
 
@@ -40,12 +40,13 @@ public class ForecastFragment extends Fragment {
     private TextView morningTempTv,dayTempTv,eveningTempTv,nightTempTv;
     private ImageView morningIconIv,dayIconIv,eveningIconIv,nightIconIv;
     private View inflatedView;
+    private String currentCity;
     private ListView forecastWeatherLv;
     private WeatherForecastModelClass weatherForecastData;
     private ArrayList<WeatherModel> weatherData;
     private boolean temperatureFormatCelsius = true;
-    private String Url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Dhaka&appid=a226ec225f23ea5717f7fa94ce785237";
-    private String baseUrl="http://api.openweathermap.org/";
+    private String Url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Dhaka&appid=8e401c96e74d2f0c07da113eb27d51d0";
+    private String BASE_URL="http://api.openweathermap.org/";
     public ForecastFragment() {
         // Required empty public constructor
     }
@@ -57,6 +58,15 @@ public class ForecastFragment extends Fragment {
         // Inflate the layout for this fragment
         inflatedView =  inflater.inflate(R.layout.fragment_forecast_weather, container, false);
         initializeAll();
+        /*Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        weatherForecastApi = retrofit.create(WeatherForecastApi.class);
+*/
+
+
         return inflatedView;
     }
 
@@ -79,22 +89,29 @@ public class ForecastFragment extends Fragment {
         forecastWeatherLv = (ListView) inflatedView.findViewById(R.id.weatherForecastLv);
 
 
-        weatherData = new ArrayList<>();
+       // weatherData = new ArrayList<>();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        weatherData = new ArrayList<>();
+        weatherForecastData = new WeatherForecastModelClass();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        weatherApi = retrofit.create(WeatherApi.class);
+        weatherForecastApi = retrofit.create(WeatherForecastApi.class);
 
 
-        Call<WeatherForecastModelClass> getWeatherData = weatherApi.getWeatherData();
+       // WeatherIconSelector weatherIconSelector = new WeatherIconSelector();
+        Location location = new Location(getActivity());
+        currentCity = location.getCity();
+
+        String dynamicUrl = BASE_URL+"data/2.5/forecast/daily?q="+currentCity+"&appid=8e401c96e74d2f0c07da113eb27d51d0";
+
+        Call<WeatherForecastModelClass> getWeatherData = weatherForecastApi.getWeatherData(dynamicUrl);
         getWeatherData.enqueue(new Callback<WeatherForecastModelClass>() {
             @Override
             public void onResponse(Call<WeatherForecastModelClass> call, Response<WeatherForecastModelClass> response) {
@@ -102,17 +119,18 @@ public class ForecastFragment extends Fragment {
                 weatherForecastData = response.body();
                 java.util.List<WeatherForecastModelClass.List> weatherList = weatherForecastData.getList();
 
+
                 //retrieve data and store into weatherData arrayList
                 for(WeatherForecastModelClass.List weather : weatherList){
 
                     int day = weather.getDt();
-                    String maximumTemp = new DecimalFormat("##.##").format(weather.getTemp().getMax());
-                    String minimumTemp = new DecimalFormat("##.##").format(weather.getTemp().getMin());
+                    String maximumTemp = new DecimalFormat("##.#").format(weather.getTemp().getMax());
+                    String minimumTemp = new DecimalFormat("##.#").format(weather.getTemp().getMin());
 
-                    String morningTemp = new DecimalFormat("##.##").format(weather.getTemp().getMorn());
-                    String dayTemp = new DecimalFormat("##.##").format(weather.getTemp().getDay());
-                    String eveningTemp = new DecimalFormat("##.##").format(weather.getTemp().getEve());
-                    String nightTemp = new DecimalFormat("##.##").format(weather.getTemp().getNight());
+                    String morningTemp = new DecimalFormat("##.#").format(weather.getTemp().getMorn());
+                    String dayTemp = new DecimalFormat("##.#").format(weather.getTemp().getDay());
+                    String eveningTemp = new DecimalFormat("##.#").format(weather.getTemp().getEve());
+                    String nightTemp = new DecimalFormat("##.#").format(weather.getTemp().getNight());
                     String date= new SimpleDateFormat("dd-MM-yyyy").format(new Date(day * 1000L));
                     String weatherCode = weather.getWeather().get(0).getId().toString();
 
@@ -142,7 +160,7 @@ public class ForecastFragment extends Fragment {
     //update weather forecast ListView
     public void updateListView(){
         if (weatherData.size() > 0 ){
-            AdapterLv adapter = new AdapterLv(context,weatherData,temperatureFormatCelsius);
+            AdapterListView adapter = new AdapterListView(context,weatherData,temperatureFormatCelsius);
             forecastWeatherLv.setAdapter(adapter);
             updateDayWeather(0);
         }
@@ -177,12 +195,12 @@ public class ForecastFragment extends Fragment {
 
     //convert kelvin to fahrenheit
     public String getFahrenheit(String kelvin){
-        return new DecimalFormat("##.##").format(Float.parseFloat(kelvin)-459)+"F";
+        return new DecimalFormat("##.##").format(Float.parseFloat(kelvin)-459)+"\u2103";
     }
 
     //convert kelvin to celsius
     public String getCelsius(String kelvin){
-        return new DecimalFormat("##.##").format(Float.parseFloat(kelvin)-273)+"C";
+        return new DecimalFormat("##.##").format(Float.parseFloat(kelvin)-273)+"\u2103";
     }
 
 }

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="10dp"
+    android:layout_margin="8dp"
     tools:context="com.example.forever.weather.ForecastFragment">
 
 
@@ -17,6 +17,38 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_margin="5dp"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center">
+                <TextView
+                    android:layout_weight="1"
+                    android:textColor="#7c0935"
+                    android:textSize="17sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="Today"
+                    android:gravity="center"/>
+                <ImageView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:src="@drawable/weather_demo"
+                    android:id="@+id/forecastDayWeatherIcon"/>
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="77"
+                    android:gravity="center"
+                    android:id="@+id/forecastDayWeatherTemp"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_margin="5dp"
                 android:orientation="vertical"
@@ -28,6 +60,8 @@
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:textColor="#7c0935"
+                    android:textSize="17sp"
                     android:text="Morning"
                     android:gravity="center"/>
                 <ImageView
@@ -54,34 +88,8 @@
                 android:gravity="center">
                 <TextView
                     android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:text="Day"
-                    android:gravity="center"/>
-                <ImageView
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:gravity="center"
-                    android:src="@drawable/weather_demo"
-                    android:id="@+id/forecastDayWeatherIcon"/>
-                <TextView
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:text="77"
-                    android:gravity="center"
-                    android:id="@+id/forecastDayWeatherTemp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_margin="5dp"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center">
-                <TextView
-                    android:layout_weight="1"
+                    android:textColor="#7c0935"
+                    android:textSize="17sp"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:text="Evening"
@@ -110,6 +118,8 @@
                 android:gravity="center">
                 <TextView
                     android:layout_weight="1"
+                    android:textColor="#7c0935"
+                    android:textSize="17sp"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:text="Night"
@@ -142,28 +152,39 @@
         <TextView
             android:gravity="center"
             android:layout_weight="2"
+            android:textColor="#1f1681"
+            android:textSize="17sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="Date"/>
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:text="Status"
-            />
+
 
         <TextView
             android:gravity="center"
             android:layout_weight="1"
+            android:textColor="#1f1681"
+            android:textSize="17sp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="Max"/>
         <TextView
             android:gravity="center"
+            android:textColor="#1f1681"
+            android:textSize="17sp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="Min"/>
+        <TextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="#1f1681"
+            android:textSize="17sp"
+            android:layout_marginRight="8dp"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:text="Status"
+            />
     </LinearLayout>
     <ListView
         android:layout_width="match_parent"

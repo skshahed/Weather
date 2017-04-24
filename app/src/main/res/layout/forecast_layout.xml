@@ -13,13 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:text="24-04-2017"
-        />
-    <ImageView
-        android:id="@+id/forecastIconTv"
-        android:layout_weight="1"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:src="@drawable/weather_demo"
+        android:textColor="#000"
         />
 
     <TextView
@@ -28,6 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:text="80*"
+        android:textColor="#000"
         android:id="@+id/forecastDayHighTempTv"/>
     <TextView
         android:gravity="center"
@@ -35,5 +30,13 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:text="55*"
+        android:textColor="#000"
         android:id="@+id/forecastDayLowTempTv"/>
+    <ImageView
+        android:id="@+id/forecastIconTv"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:src="@drawable/weather_demo"
+        />
 </LinearLayout>
